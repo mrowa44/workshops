@@ -4,6 +4,7 @@
     %meta{ charset: 'utf-8' }/
     %meta{ content: 'IE=Edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }/
     %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }/
+    %title= AppConfig.workshops_name
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
@@ -12,9 +13,22 @@
     %nav.navbar.navbar-default
       .container-fluid
         .navbar-header
-          %span.navbar-brand #{AppConfig.workshops_name}
-        %p.navbar-text.navbar-right
-          Links should go here
+          %span.navbar-brand= link_to AppConfig.workshops_name, root_path
+
+          %button{ :type => "button", :class => "navbar-toggle", :"data-toggle" => "collapse", :"data-target" => ".navbar-collapse" }
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+
+        .navbar-collapse.collapse
+          %ul.navbar-text.navbar-right.navbar-nav.nav
+            - if user_signed_in?
+              %li= button_to 'Log out', destroy_user_session_path, class: 'btn btn-danger navbar-btn', method: :delete
+            - else
+              %li= button_to 'Log in', new_user_session_path, class: 'btn btn-default navbar-btn', method: :get
+              %li= button_to 'Sign up', new_user_registration_path, class: 'btn btn-success navbar-btn', method: :get
+
+
     .container-fluid
       .row
         .col-lg-12
