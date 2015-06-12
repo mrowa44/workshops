@@ -23,6 +23,7 @@
         .navbar-collapse.collapse
           %ul.navbar-text.navbar-right.navbar-nav.nav
             - if user_signed_in?
+              %li= button_to 'My Profile', current_user, class: 'btn btn-info navbar-btn', method: :get
               %li= button_to 'Log out', destroy_user_session_path, class: 'btn btn-danger navbar-btn', method: :delete
             - else
               %li= button_to 'Log in', new_user_session_path, class: 'btn btn-default navbar-btn', method: :get

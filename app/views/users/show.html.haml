@@ -1,0 +1,9 @@
+%h1
+  = gravatar_for user
+  = user.fullname
+%a{ href: "http://gravatar.com/emails", target: "_blank" } change picture
+%h4= user.mail
+%p= user.last_login
+%h3 Recent reviews
+= render partial: 'review'
+= will_paginate reviews

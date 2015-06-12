@@ -1,0 +1,8 @@
+- reviews.each do |review|
+  %li
+    = link_to review.product.title, category_product_path(review.product.category, review.product)
+    = review.rating
+    %br
+    = review.content
+    %br
+    = review.date
