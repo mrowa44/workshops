@@ -1,11 +1,29 @@
+@import "variables";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Lato|Roboto+Slab);
 
 html {
   position: relative;
   min-height: 100%;
 }
 body{
-  margin-bottom: 40px;
+  margin-bottom: 90px;
+  font-family: 'Roboto Slab';
+}
+.navbar{
+  margin-bottom: 30px;
+}
+.navbar-brand{
+  line-height: 50px;
+  font-family: 'Lato';
+  font-size: 2em;
+  letter-spacing: +.15em;
+  a:link, a:hover, a:active, a:visited{
+    text-decoration: none;
+  }
+}
+.navbar-right .btn{
+  margin-left: 1em;
 }
 .footer{
   position: absolute;
