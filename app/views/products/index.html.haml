@@ -1,23 +1,22 @@
-%h1 Listing products
+%h2.mid Listing products
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
+%table.products
 
   - products.each do |product|
     %tr
-      %td= product.title
+      %td= link_to product.title, category_product_path(product.category, product)
       %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
+      %td= number_to_currency(product.price)
+      %td
+        = button_to category_product_path(product.category, product), method: :get, class: 'btn btn-default' do
+          %i.fa.fa-eye
+          Show
 
-      - if current_user && ( product.user == current_user || current_user.admin? )
-        %td= link_to 'Edit', edit_category_product_path(product.category, product)
-        %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+        - if current_user && ( product.user == current_user || current_user.admin? )
+          = button_to edit_category_product_path(product.category, product), method: :get, class: 'btn btn-info' do
+            %i.fa.fa-pencil
+            Edit
 
-%br
+          = button_to category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+            %i.fa.fa-trash
+            Delete
