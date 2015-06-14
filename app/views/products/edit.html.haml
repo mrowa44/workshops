@@ -1,7 +1,12 @@
 %h1 Editing product
 
-= render 'form'
+.products
+  = render 'form'
 
-= link_to 'Show', category_product_path(category, product)
-\|
-= link_to 'Back', category_path(category)
+  = button_to category_product_path(category, product), method: :get, class: 'btn btn-default' do
+    %i.fa.fa-eye
+    Show
+  = button_to category_path(category), method: :get, class: 'btn btn-primary' do
+    %i.fa.fa-long-arrow-left
+    Back to
+    = category.name

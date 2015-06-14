@@ -3,6 +3,11 @@
     %b.category-name= category.name
 
   %table.table.table-striped
+    %th Title
+    %th
+      .pull-right Average rating
+    %th
+      .pull-right Price
     - category.products.each do |product|
       %tr
         %td= link_to product.title, category_product_path(category, product)
@@ -11,6 +16,8 @@
             %i.fa.fa-star-o.pull-right
           - product.average_rating.to_i.times do
             %i.fa.fa-star.pull-right
+        %td
+          .pull-right= number_to_currency(product.price)
 
   .panel.panel-default
     = render 'products/form'
