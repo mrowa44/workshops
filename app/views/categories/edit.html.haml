@@ -1,7 +1,11 @@
 %h1 Editing category
+.categories
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  = button_to category, class: 'btn btn-info', method: :get do
+    %i.fa.fa-eye
+    Show
+  = button_to  categories_path, class: 'btn btn-primary', method: :get do
+    %i.fa.fa-long-arrow-left
+    Back

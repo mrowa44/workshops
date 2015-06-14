@@ -1,0 +1,13 @@
+@import "variables";
+
+.categories{
+  .btn{
+    float: right;
+    display: inline;
+    margin-left: .5em;
+  }
+  .category-name{
+    font-size: 1.5em;
+    color: $brand-success;
+  }
+}

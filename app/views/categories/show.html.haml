@@ -1,18 +1,26 @@
-%p#notice= notice
+.categories
+  %h2.mid
+    %b.category-name= category.name
 
-%p
-  %b Name:
-  = category.name
+  %table.table.table-striped
+    - category.products.each do |product|
+      %tr
+        %td= link_to product.title, category_product_path(category, product)
+        %td
+          - (5 - product.average_rating.to_i).times do
+            %i.fa.fa-star-o.pull-right
+          - product.average_rating.to_i.times do
+            %i.fa.fa-star.pull-right
 
-%p
-  - category.products.each do |product|
-    = product.title
+  .panel.panel-default
+    = render 'products/form'
 
-%p
-  %h3 New product
-  = render 'products/form'
 
-- if current_user && current_user.admin?
-  = link_to 'Edit', edit_category_path(category)
-  \|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  - if current_user && current_user.admin?
+    = button_to edit_category_path(category), class: 'btn btn-info', method: :get do
+      %i.fa.fa-edit
+      Edit
+
+  = button_to categories_path, class: 'btn btn-primary', method: :get do
+    %i.fa.fa-long-arrow-left
+    Back to all categories
