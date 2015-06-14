@@ -20,6 +20,7 @@ gem 'travis'
 gem 'ffaker', '~> 2.0.0'
 gem 'konf'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'font-awesome-rails'
 
 group :development do

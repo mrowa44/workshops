@@ -1,23 +1,25 @@
-
-.panel.panel-default
-  .panel-heading
-    = link_to user_path(review.user) do
-      %span= review.author
-    %span
-      = time_ago_in_words(review.created_at)
-      ago
-
-  .thumbnail
-    = link_to user_path(review.user) do
-      .user-photo= gravatar_for review.user, 100
-
-  .panel-body
-    %p
+- reviews.each do |review|
+  .panel.panel-default
+    .panel-heading
+      - if current_page? category_product_path(review.product.category, review.product)
+        = link_to user_path(review.user) do
+          %span= review.author
       %span
-        - review.rating.times do
-          %i.fa.fa-star
-        - (5 - review.rating).times do
-          %i.fa.fa-star-o
-    %p= review.content
+        = time_ago_in_words(review.created_at)
+        ago
+      - if current_page? user_path
+        on
+        %span= link_to review.product.title, category_product_path(review.product.category, review.product)
 
+    .thumbnail
+      = link_to user_path(review.user) do
+        .user-photo= gravatar_for review.user, 100
 
+    .panel-body
+      %p
+        %span
+          - review.rating.times do
+            %i.fa.fa-star
+          - (5 - review.rating).times do
+            %i.fa.fa-star-o
+        %p= review.content

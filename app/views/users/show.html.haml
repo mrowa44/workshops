@@ -1,9 +1,13 @@
-%h1
-  = gravatar_for user
-  = user.fullname
-%a{ href: "http://gravatar.com/emails", target: "_blank" } change picture
-%h4= user.mail
-%p= user.last_login
-%h3 Recent reviews
-= render partial: 'review'
-= will_paginate reviews
+.col-md-10.col-md-offset-1.users
+  %h1
+    = gravatar_for user
+    = user.fullname
+  - if current_user == user
+    %a{ href: "http://gravatar.com/emails", target: "_blank" } change picture
+  %h4= user.mail
+  %p= user.last_login
+  - if user.reviews.any?
+    %h3.mid Recent reviews
+  = render partial: 'reviews/review'
+
+  = will_paginate reviews, renderer: BootstrapPagination::Rails
