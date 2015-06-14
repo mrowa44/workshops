@@ -4,12 +4,15 @@
       - if current_page? category_product_path(review.product.category, review.product)
         = link_to user_path(review.user) do
           %span= review.author
-      %span
-        = time_ago_in_words(review.created_at)
-        ago
+        %span
+          = time_ago_in_words(review.created_at)
+          ago
+
       - if current_page? user_path
-        on
         %span= link_to review.product.title, category_product_path(review.product.category, review.product)
+        %br
+        %span= review.date
+
 
     .thumbnail
       = link_to user_path(review.user) do
