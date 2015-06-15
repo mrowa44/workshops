@@ -3,18 +3,19 @@
 .col-md-10.col-md-offset-1.products
   %p
     = product.description
+
+  %p
+    Belongs to:
+    = link_to user.fullname, user_path(user)
+  %p
+    %b Category:
+    %span= link_to product.category.name, category
   %p
     %b Price:
     = number_to_currency(product.price)
 
-  %p
-    %b Category:
-    %br
-    %span.category-name= link_to product.category.name, category
-
   - if product.reviews.any?
     %h3.mid Reviews
-
   = render partial: 'reviews/review'
 
   - if user_signed_in?

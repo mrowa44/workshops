@@ -1,0 +1,9 @@
+%tr
+  %td= link_to product.title, category_product_path(product.category, product)
+  %td= product.category.name
+  %td
+    - product.average_rating.to_i.times do
+      %i.fa.fa-star
+    - (5 - product.average_rating.to_i).times do
+      %i.fa.fa-star-o
+  %td= number_to_currency(product.price)

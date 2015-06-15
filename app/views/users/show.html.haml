@@ -6,8 +6,28 @@
     %a{ href: "http://gravatar.com/emails", target: "_blank" } change picture
   %h4= user.mail
   %p= user.last_login
-  - if user.reviews.any?
-    %h3.mid Recent reviews
-  = render partial: 'reviews/review'
 
-  = will_paginate reviews, renderer: BootstrapPagination::Rails
+  .text-center
+    .btn-group{ role: "group" }
+      %button.btn.btn-lg.btn-default.user-reviews-btn.active{ type: "button" } Reviews
+      %button.btn.btn-lg.btn-default.user-products-btn{ type: "button" } Products
+
+
+  .user-products.hidden
+    - if user.products.any?
+      %table.table.table-striped
+        %th Title
+        %th Caregory
+        %th Average rating
+        %th Price
+        = render partial: 'products/product', collection: products
+    - else
+      %h3.mid User doesn't have any products
+
+  .user-reviews
+    - if user.reviews.any?
+      = render partial: 'reviews/review'
+      = will_paginate reviews, renderer: BootstrapPagination::Rails
+    - else
+      %h3.mid User doesn't have any reviews
+
