@@ -19,8 +19,9 @@
         %td
           .pull-right= number_to_currency(product.price)
 
-  .panel.panel-default
-    = render 'products/form'
+  - if user_signed_in?
+    .panel.panel-default
+      = render 'products/form'
 
 
   - if current_user && current_user.admin?

@@ -17,7 +17,8 @@
 
   = render partial: 'reviews/review'
 
-  = render 'reviews/form'
+  - if user_signed_in?
+    = render 'reviews/form'
 
   - if current_user && current_user == product.user
     = button_to edit_category_product_path(category.id, product.id), class: 'btn btn-info', method: :get do
