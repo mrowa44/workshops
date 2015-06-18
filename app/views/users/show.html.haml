@@ -15,18 +15,13 @@
 
   .user-products.hidden
     - if user.products.any?
-      %table.table.table-striped
-        %th Title
-        %th Caregory
-        %th Average rating
-        %th Price
-        = render partial: 'products/product', collection: products
+      = render partial: 'products/products'
     - else
       %h3.mid User doesn't have any products
 
   .user-reviews
     - if user.reviews.any?
-      = render partial: 'reviews/review'
+      = render partial: 'reviews/reviews'
       = will_paginate reviews, renderer: BootstrapPagination::Rails
     - else
       %h3.mid User doesn't have any reviews

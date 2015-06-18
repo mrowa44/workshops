@@ -16,7 +16,7 @@
 
   - if product.reviews.any?
     %h3.mid Reviews
-  = render partial: 'reviews/review'
+  = render partial: 'reviews/reviews'
 
   - if user_signed_in?
     = render 'reviews/form'
